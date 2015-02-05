@@ -97,8 +97,7 @@ public class Coref01 {
         for (int idx = 0; idx < spans.length; idx++) {
             final Span span = spans[idx];
             // flesh out the parse with individual token sub-parses
-            p.insert(new Parse(text, span, AbstractBottomUpParser.TOK_NODE, 0,
-                    idx));
+            p.insert(new Parse(text, span, AbstractBottomUpParser.TOK_NODE, 0, idx));
         }
 
         Parse actualParse = parse(p);
@@ -143,8 +142,7 @@ public class Coref01 {
             final Parse parse = parseSentence(sentences[i]);
 
             final DefaultParse parseWrapper = new DefaultParse(parse, i);
-            final Mention[] extents = linker.getMentionFinder().getMentions(
-                    parseWrapper);
+            final Mention[] extents = linker.getMentionFinder().getMentions(parseWrapper);
 
             // Note: taken from TreebankParser source...
             for (int ei = 0, en = extents.length; ei < en; ei++) {
@@ -152,8 +150,7 @@ public class Coref01 {
                 if (extents[ei].getParse() == null) {
                     // not sure how to get head index, but it doesn't seem to be
                     // used at this point
-                    final Parse snp = new Parse(parse.getText(),
-                            extents[ei].getSpan(), "NML", 1.0, 0);
+                    final Parse snp = new Parse(parse.getText(), extents[ei].getSpan(), "NML", 1.0, 0);
                     parse.insert(snp);
                     // setting a new Parse for the current extent
                     extents[ei].setParse(new DefaultParse(snp, i));
